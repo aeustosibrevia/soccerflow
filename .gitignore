@@ -1,0 +1,51 @@
+# Global
+.DS_Store
+*.log
+*.env
+*.tmp
+.idea/
+.vscode/
+__pycache__/
+.env.local
+
+# Next
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.next/
+dist/
+build/
+coverage/
+
+# ML
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+.venv/
+venv/
+.env/
+*.egg-info/
+.mypy_cache/
+pytest_cache/
+
+# Spring
+target/
+*.jar
+*.war
+*.ear
+*.iml
+out/
+logs/
+.mvn/
+spring.log
+
+# Docker
+*.pid
+docker-compose.override.yml
+.env.docker
+
+# S
+Thumbs.db
+ehthumbs.db

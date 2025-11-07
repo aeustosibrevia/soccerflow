@@ -1,0 +1,64 @@
+.footer {
+    background-color: #062743;
+    color: #f9fafb;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 50px 80px;
+    gap: 30px;
+}
+
+.section h3 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.section ul li {
+    margin-bottom: 8px;
+    cursor: pointer;
+    opacity: 0.9;
+}
+
+.section ul li:hover {
+    text-decoration: underline;
+    opacity: 1;
+}
+
+.subscribe {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.subscribe input {
+    flex: 1;
+    padding: 6px 10px;
+    border-radius: 6px;
+    border: none;
+    outline: none;
+}
+
+.subscribe button {
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+
+
+.socials {
+    display: flex;
+    gap: 15px;
+    font-size: 22px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+

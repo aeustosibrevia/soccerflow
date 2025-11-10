@@ -2,8 +2,15 @@
 import Link from "next/link";
 import Image from "next/image";
 import styles from "./Header.module.css";
+import { useActivePath } from "../hooks/useActivePath";
 
 export default function Header() {
+    const isHome = useActivePath("/");
+    const isMatches = useActivePath("/matches");
+    const isTeams = useActivePath("/teams");
+    const isAccount = useActivePath("/account");
+    const isFavorites = useActivePath("/favorites");
+
     return (
         <header className={styles.header}>
             <div className={styles.left}>
@@ -21,6 +28,7 @@ export default function Header() {
                         <span className={styles.logoBottom}>Flow</span>
                     </div>
                 </Link>
+
                 <div className={styles.searchBox}>
                     <input type="text" placeholder="Search..." />
                     <Image
@@ -34,13 +42,38 @@ export default function Header() {
             </div>
 
             <nav className={styles.nav}>
-                <Link href="/">Home</Link>
-                <Link href="/matches">Matches</Link>
-                <Link href="/teams">Teams</Link>
+                <Link
+                    href="/"
+                    className={`${styles.navLink} ${isHome ? styles.active : ""}`}
+                >
+                    Home
+                </Link>
+                <Link
+                    href="/matches"
+                    className={`${styles.navLink} ${isMatches ? styles.active : ""}`}
+                >
+                    Matches
+                </Link>
+                <Link
+                    href="/teams"
+                    className={`${styles.navLink} ${isTeams ? styles.active : ""}`}
+                >
+                    Teams
+                </Link>
 
                 <div className={styles.icons}>
-                    <Image src="/icons/user.svg" alt="user" width={20} height={20} />
-                    <Image src="/icons/heart.svg" alt="favorites" width={20} height={20} />
+
+                    <Link href="/account" className={styles.iconLink}>
+                        <div className={styles.iconWrapper}>
+                            <Image src={isAccount ? "/icons/user-active.svg" : "/icons/user.svg"} alt="user" width={30} height={30} />
+                        </div>
+                    </Link>
+
+                    <Link href="/favorites" className={styles.iconLink}>
+                        <div className={styles.iconWrapper}>
+                            <Image src={isFavorites ? "/icons/heart-active.svg" : "/icons/heart.svg"} alt="favorites" width={30} height={30} />
+                        </div>
+                    </Link>
                 </div>
             </nav>
         </header>

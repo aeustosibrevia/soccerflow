@@ -1,25 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap');
 
-@import "tailwindcss";
 
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
 
 * {
   margin: 0;
@@ -33,7 +15,6 @@ html, body {
 
 body {
   font-family: "Inter", sans-serif;
-  background: #f1f5f9;
   color: #111;
 }
 
@@ -45,5 +26,4 @@ body {
 
 .page-content {
   flex: 1;
-  padding-top: 70px;
 }

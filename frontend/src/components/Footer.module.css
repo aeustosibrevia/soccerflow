@@ -3,14 +3,28 @@
     color: #f9fafb;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    padding: 50px 80px;
-    gap: 30px;
+    padding: 30px 50px;
+    gap: 10px;
+}
+
+.section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
 
 .section h3 {
+    font-family: "Libre Baskerville", serif;
     font-size: 20px;
-    font-weight: 600;
+    font-weight: 400;
     margin-bottom: 20px;
+}
+
+.section ul,
+.section p {
+    text-align: left;
+    color: rgba(99, 99, 99, 1);
 }
 
 .section ul {
@@ -52,8 +66,6 @@
     font-weight: 500;
 }
 
-
-
 .socials {
     display: flex;
     gap: 15px;
@@ -61,4 +73,3 @@
     margin-top: 10px;
     cursor: pointer;
 }
-

@@ -1,6 +1,21 @@
+"use client";
+
 import styles from "./page.module.css";
+import TitleWithButtons from "@/src/components/TitleWithButtons";
+
 
 
 export default function Favorites() {
-    return <h1>My favorites</h1>
+    return (
+        <div className={styles.page}>
+            <div>
+            <TitleWithButtons
+                title="My Favorites"
+                buttons={["Favorite Matches", "Favorite Teams"]}
+            />
+        </div>
+
+        </div>
+
+    )
 }

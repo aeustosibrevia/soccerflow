@@ -1,4 +1,4 @@
-import styles from "./Auth.module.css";
+import styles from "../Authorization/Auth.module.css";
 
 
 export default function ForgotPassword() {

@@ -1,6 +1,6 @@
 import styles from "./FavoriteTeamsSection.module.css";
 import Image from "next/image";
-import { NoteButton } from "../favorites/NoteButton";
+import { NoteButton } from "../ui/NoteButton";
 
 type FavoriteTeam = {
     id: number;

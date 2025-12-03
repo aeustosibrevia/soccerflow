@@ -1,9 +1,9 @@
 "use client";
 
 import styles from "./page.module.css";
-import TitleWithButtons from "@/src/components/TitleWithButtons";
-import FavoriteMatchesSection from "@/src/components/favorites/FavoriteMatchesSection";
-import FavoriteTeamsSection from "@/src/components/favorites/FavoriteTeamsSection";
+import TitleWithButtons from "@/src/components/ui/TitleWithButtons";
+import FavoriteMatchesSection from "@/src/components/Favorites/FavoriteMatchesSection";
+import FavoriteTeamsSection from "@/src/components/Favorites/FavoriteTeamsSection";
 
 
 export default function Favorites() {

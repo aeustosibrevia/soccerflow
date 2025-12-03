@@ -1,6 +1,6 @@
 import Image from "next/image";
 import styles from "./FavoriteMatchesSection.module.css";
-import { NoteButton } from "../favorites/NoteButton";
+import { NoteButton } from "../ui/NoteButton";
 
 type Team = {
     name: string;

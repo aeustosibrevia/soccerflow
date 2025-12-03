@@ -16,10 +16,12 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -39,11 +41,11 @@ public class Player {
 	@Column(nullable = false)
 	private Position position;
 	
-	@ManyToOne(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JsonBackReference
 	private Team teamId;
 	
-	@OneToMany(mappedBy = "player") 
+	@OneToMany(mappedBy = "player", cascade = CascadeType.ALL, orphanRemoval = true) 
     private List<PlayerStatisticInMatch> statistics;
 	
 	public enum  Position{

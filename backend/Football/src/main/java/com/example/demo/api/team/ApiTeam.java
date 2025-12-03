@@ -80,7 +80,6 @@ public class ApiTeam {
 		            existingPlayer.setTeamId(team);
 		            newPlayers.add(existingPlayer);
 		        } else {
-		            // новий гравець — створюємо
 		            player.setTeamId(team);
 		            newPlayers.add(player);
 		        }

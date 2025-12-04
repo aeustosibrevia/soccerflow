@@ -1,6 +1,5 @@
 import Image from "next/image";
 import styles from "./MatchesSection.module.css";
-import { NoteButton } from "../ui/NoteButton";
 
 type Team = {
     name: string;

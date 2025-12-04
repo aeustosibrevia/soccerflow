@@ -3,7 +3,6 @@
 import styles from "./page.module.css";
 import TitleWithButtons from "@/src/components/ui/TitleWithButtons";
 import TeamsSection from "@/src/components/Teams/TeamsSection";
-import Image from "next/image";
 
 const myteamFilters = [
     {

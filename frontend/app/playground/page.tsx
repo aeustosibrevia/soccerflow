@@ -1,17 +1,18 @@
 import styles from "./page.module.css";
 
+import MatchesSection from "@/src/components/Matches/MatchesSection";
+import TeamsSection from "@/src/components/Teams/TeamsSection";
 
-import TitleWithButtons from "@/src/components/ui/TitleWithButtons";
 
 export default function Playground() {
 
 
     return (
         <div className={styles.page}>
-            <TitleWithButtons
-                title="My Favorites"
-                buttons={["Favorite Matches", "Favorite Teams"]}
-            />
+
+<MatchesSection />
+
+            <TeamsSection />
 
         </div>
     );

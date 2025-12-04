@@ -9,6 +9,9 @@ import FavoriteTeamsSection from "@/src/components/Favorites/FavoriteTeamsSectio
 export default function Favorites() {
 
     return (
+
+
+
         <div className={styles.page}>
                 <TitleWithButtons
                     title="My Favorites"

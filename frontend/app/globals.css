@@ -16,6 +16,7 @@ html, body {
 body {
   font-family: "Inter", sans-serif;
   color: #111;
+  background-color: #111;
 }
 
 .page-layout {

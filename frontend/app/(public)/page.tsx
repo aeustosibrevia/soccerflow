@@ -4,7 +4,7 @@ import Image from "next/image";
 import styles from "./page.module.css";
 import { useParallaxMouse } from "@/src/hooks/useParallaxMouse";
 import { useCarousel } from "@/src/hooks/useCarousel";
-import SubscribePopup from "@/src/components/SubscribePopup";
+import SubscribePopup from "@/src/components/Main/SubscribePopup";
 
 export default function Home() {
     const heroBgRef = useParallaxMouse(40, 20);

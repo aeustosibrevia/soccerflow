@@ -4,11 +4,14 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -27,7 +30,7 @@ public class User implements UserDetails {
 	private Long id;
 	private String username;
 	private String password;
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(
 			name="user_roles",
 			joinColumns=@JoinColumn(name="user_id"),
@@ -37,7 +40,9 @@ public class User implements UserDetails {
 	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return roles;
+		return roles.stream()
+	            .map(role -> new SimpleGrantedAuthority(role.getRole()))
+	            .collect(Collectors.toSet());
 	}
 
 }

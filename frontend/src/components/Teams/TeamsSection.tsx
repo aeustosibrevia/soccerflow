@@ -43,7 +43,7 @@ const teams: FavoriteTeam[] = [
     },
 ];
 
-export default function FavoriteTeamsSection() {
+export default function TeamsSection() {
     return (
         <section className={styles.section}>
 

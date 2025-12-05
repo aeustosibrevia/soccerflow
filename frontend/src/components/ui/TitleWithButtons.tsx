@@ -3,17 +3,14 @@
 import styles from "./TitleWithButtons.module.css";
 import PageNavButtons from "./PageNavButtons";
 import { usePinUnderHeader } from "@/src/hooks/usePinUnderHeader";
-// Импортируем наш новый компонент и типы
 import FilterBar, { FilterConfig } from "./FilterBar";
 
 type Props = {
     title?: string;
 
-    // Опция 1: Старые кнопки
     buttons?: string[];
     onButtonClick?: (index: number) => void;
 
-    // Опция 2: Новые фильтры
     filters?: FilterConfig[];
     onSearch?: (values: any) => void;
 };

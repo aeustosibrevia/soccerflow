@@ -216,8 +216,12 @@ export default function TeamsSection({onSearch}:Props) {
                                 </NoteButton>
 
                             </div>
-                        </div>
 
+                        </div>
+                        <div className={styles.cardFooter}>
+                            <NoteButton style={{ backgroundColor: 'rgba(127, 138, 113, 1)'}}>
+                                Edit Team Page</NoteButton>
+                        </div>
 
                     </div>
                 </div>

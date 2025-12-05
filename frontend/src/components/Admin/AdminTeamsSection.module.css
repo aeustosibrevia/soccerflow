@@ -135,3 +135,9 @@
     gap: 12px;
 }
 
+.cardFooter {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 14px;
+}

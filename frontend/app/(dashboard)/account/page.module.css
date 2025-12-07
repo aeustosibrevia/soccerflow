@@ -1,0 +1,110 @@
+body {
+  background: linear-gradient(92.19deg, #485f65 2.02%, #0c2e41 99.32%);
+}
+
+.account-title {
+  margin-top: 5%;
+  font-family: "Lexend Giga";
+  font-weight: 700;
+  font-style: Bold;
+  font-size: 72px;
+  line-height: 125px;
+  letter-spacing: 20%;
+  text-align: center;
+  color: rgba(255, 255, 255, 1);
+}
+
+.btn-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 10px;
+}
+
+.btn {
+  width: 15vw;
+  height: 5vh;
+  border-radius: 12px;
+  font-family: "Lexend";
+  font-weight: 400;
+  font-size: 24px;
+  letter-spacing: 4px;
+  text-align: center;
+  background: rgba(218, 223, 225, 1);
+  color: rgba(119, 119, 119, 1);
+}
+
+.account-container {
+  background: rgba(93, 112, 101, 1);
+  width: 90vw;
+  height: 80vh;
+  justify-self: center;
+  border-radius: 12px;
+  border: 2px solid rgba(255, 255, 255, 1);
+  outline: 2px solid rgba(199, 199, 199, 1);
+  outline-offset: 15px;
+  margin: 3vw 0vw;
+}
+
+.greeting {
+  margin: 3vh;
+  font-family: "Lexend";
+  font-weight: 400;
+  font-size: 50px;
+  letter-spacing: 7px;
+  text-align: center;
+  color: rgba(199, 199, 199, 1);
+  font-family: Lexend;
+}
+
+.greeting > b {
+  color: rgba(255, 255, 255, 1);
+}
+
+.user-info {
+  display: flex;
+  flex-direction: row;
+}
+
+.text-info {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-family: "Lexend";
+  font-weight: 200;
+  font-style: Italic;
+  font-size: 20px;
+  letter-spacing: 2px;
+  text-align: center;
+  color: rgba(199, 199, 199, 1);
+  align-items: center;
+}
+
+.text-info > div {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
+
+.text-info > div > div > input {
+  background: rgba(199, 199, 199, 1);
+  width: 15vw;
+  height: 6vh;
+  opacity: 1;
+  top: 578px;
+  left: 543px;
+  border-radius: 12px;
+  border: none;
+  font-family: "Lexend";
+  font-size: 20px;
+  padding: 10px;
+}
+
+.text-info > div > div > p {
+  padding: 7px;
+}
+
+.user-ava {
+    align-self: center;
+}

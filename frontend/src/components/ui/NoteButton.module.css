@@ -1,0 +1,26 @@
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(68, 90, 107, 1);
+    border: 3px solid rgba(119, 119, 119, 1);
+    color: rgba(255, 255, 255, 0.7);
+    padding: 8px 16px;
+    border-radius: 12px;
+    font-size: 21px;
+    font-weight: 200;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    outline: none;
+    font-family: "Lexend Giga", sans-serif;
+}
+
+.button:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.6);
+}
+
+.button:active {
+    transform: scale(0.98);
+}

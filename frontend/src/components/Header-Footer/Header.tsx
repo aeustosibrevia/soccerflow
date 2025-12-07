@@ -2,7 +2,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import styles from "./Header.module.css";
-import { useActivePath } from "../hooks/useActivePath";
+import { useActivePath } from "../../hooks/useActivePath";
 
 export default function Header() {
     const isHome = useActivePath("/");

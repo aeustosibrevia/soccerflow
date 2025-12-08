@@ -2,6 +2,12 @@ body {
   background: linear-gradient(92.19deg, #485f65 2.02%, #0c2e41 99.32%);
 }
 
+.account-page,
+.account-container {
+  position: static;
+  overflow: visible;
+}
+
 .account-title {
   margin-top: 5%;
   font-family: "Lexend Giga";
@@ -36,14 +42,18 @@ body {
 
 .account-container {
   background: rgba(93, 112, 101, 1);
-  width: 90vw;
-  height: 80vh;
+  width: 83vw;
+  padding: 3vw;
   justify-self: center;
   border-radius: 12px;
   border: 2px solid rgba(255, 255, 255, 1);
   outline: 2px solid rgba(199, 199, 199, 1);
   outline-offset: 15px;
   margin: 3vw 0vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .greeting {
@@ -61,16 +71,19 @@ body {
   color: rgba(255, 255, 255, 1);
 }
 
-.user-info {
+.user-info > div {
   display: flex;
   flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 13vw;
 }
 
 .text-info {
-  width: 60%;
+  width: 50%;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 20px;
   font-family: "Lexend";
   font-weight: 200;
   font-style: Italic;
@@ -78,7 +91,7 @@ body {
   letter-spacing: 2px;
   text-align: center;
   color: rgba(199, 199, 199, 1);
-  align-items: center;
+  align-items: flex-start;
 }
 
 .text-info > div {
@@ -105,6 +118,97 @@ body {
   padding: 7px;
 }
 
+.email {
+  width: 20vw !important;
+}
+
+.checkbox-text {
+  font-family: Lexend;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  letter-spacing: 1px;
+  text-align: center;
+  color: rgba(0, 34, 59, 1);
+}
+
+.checkbox-wrapper {
+  margin: 2vw;
+}
+
+.checkbox {
+  width: 5vw;
+}
+
+.edit-profile-btn {
+  width: 16vw;
+  height: 8vh;
+  opacity: 1;
+  border-radius: 12px;
+  background: rgba(68, 90, 107, 1);
+  border: 3px solid rgba(119, 119, 119, 1);
+  font-family: Lexend Giga;
+  font-weight: 200;
+  font-style: ExtraLight;
+  font-size: 28px;
+  color: rgba(255, 255, 255, 1);
+}
+
+.edit-password-btn,
+.edit-photo-btn {
+  justify-self: center;
+  align-content: center;
+  width: 15vw;
+  height: 6vh;
+  padding: 5px;
+  font-family: Lexend Giga;
+  font-weight: 300;
+  font-style: Italic;
+  font-size: 18px;
+  letter-spacing: 4%;
+  border: 3px solid rgba(119, 119, 119, 1);
+  color: rgba(199, 199, 199, 1);
+  background-color: rgba(93, 112, 101, 1);
+  border-radius: 12px;
+}
+
+.edit-password-btn {
+  margin-left: 20px;
+}
+
 .user-ava {
-    align-self: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2vw;
+}
+
+.user-ava > img {
+  width: 350px;
+  height: 350px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.password-change-container {
+  display: flex;
+  flex-direction: row;
+  gap: 2vw;
+}
+
+.pswrd-change > div {
+  display: flex;
+  flex-direction: row !important;
+  gap: 10vw !important;
+}
+
+.password-change-title {
+  width: fit-content;
+  align-self: flex-start;
+}
+
+.edit-profile-btn-container {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
 }

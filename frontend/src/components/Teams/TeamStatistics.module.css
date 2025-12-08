@@ -1,0 +1,62 @@
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    font-family: "Lexend", sans-serif;
+}
+
+.row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    background-color: #556B60;
+    border-radius: 12px;
+    padding: 15px 20px;
+    margin-bottom: 16px;
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.seasonWrapper {
+    font-size: 22px;
+    font-weight: 700;
+    width: 100px;
+    flex-shrink: 0;
+    align-self: center;
+}
+
+.statItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    flex: 1;
+    text-align: center;
+}
+
+.label {
+    font-size: 22px;
+    color: #DADFE1;
+    margin-bottom: 4px;
+    line-height: 1.2;
+    font-weight: 200;
+    min-height: 54px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.value {
+    font-size: 50px;
+    font-weight: 600;
+    line-height: 1;
+}
+
+.divider {
+    width: 5px;
+    height: 120px;
+    background-color: #DADFE1;
+    margin: 0 10px;
+    border-radius: 15%;
+    align-self: center;
+}

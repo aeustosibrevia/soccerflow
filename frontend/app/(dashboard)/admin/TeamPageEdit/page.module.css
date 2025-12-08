@@ -1,0 +1,187 @@
+.page {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 10px;
+
+    background: linear-gradient(
+            to right,
+            #475e65 -30%,
+            #1c3b4b 100%
+    );
+
+    color: white;
+}
+
+
+.section {
+    width: 100%;
+    display: flex;
+    padding: 0 50px;
+    padding-top: 100px;
+
+    margin: 40px auto;
+    font-family: "Lexend", sans-serif;
+    box-sizing: border-box;
+}
+
+.container {
+
+    width: 100%;
+    max-width: 1000px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.fieldGroup {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.labelChip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 16px;
+    height: 32px;
+    border-radius: 999px;
+    background: rgba(220, 220, 220, 1);
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 16px;
+    font-weight: 400;
+    font-family: "Lexend", sans-serif;
+
+}
+
+.photolabelChip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 16px;
+    height: 32px;
+    border-radius: 999px;
+    color: #C7C7C7;
+    font-size: 24px;
+    font-weight: 400;
+}
+
+.inputBlock,
+.contentBlock {
+    width: 100%;
+    background: rgba(199, 199, 199, 1);
+    border-radius: 12px;
+    border: none;
+    box-sizing: border-box;
+    font-family: "Lexend", sans-serif;
+    color: #1f2933;
+}
+
+.inputBlock {
+    height: 48px;
+    padding: 0 20px;
+    font-size: 18px;
+    outline: none;
+    font-weight: 500;
+}
+
+.inputBlock::placeholder {
+    color: rgba(0, 0, 0, 0.4);
+}
+
+.contentBlock {
+    padding: 24px;
+    font-size: 16px;
+    line-height: 1.5;
+    min-height: 200px;
+}
+
+.textParagraph {
+    margin: 0 0 16px 0;
+}
+
+.subHeader {
+    margin: 0 0 8px 0;
+    font-weight: 600;
+}
+
+.list {
+    margin: 0 0 16px 0;
+    padding-left: 24px;
+    list-style-type: disc;
+}
+
+.list li {
+    margin-bottom: 4px;
+}
+
+
+.labelChip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 16px;
+    height: 32px;
+    border-radius: 999px;
+    background: rgba(220, 220, 220, 1);
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.inputBlock,
+.textareaBlock {
+    width: 100%;
+    background: rgba(199, 199, 199, 1);
+    border-radius: 12px;
+    border: none;
+    box-sizing: border-box;
+    font-family: "Lexend", sans-serif;
+    color: #1f2933;
+    outline: none;
+}
+
+.inputBlock {
+    height: 48px;
+    padding: 0 20px;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.textareaBlock {
+    min-height: 240px;
+    padding: 20px;
+    font-size: 16px;
+    line-height: 1.5;
+    resize: vertical;
+    white-space: pre-wrap;
+}
+
+.inputBlock::placeholder,
+.textareaBlock::placeholder {
+    color: rgba(0, 0, 0, 0.4);
+}
+
+.sectionComponents {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    font-family: "Lexend", sans-serif;
+    box-sizing: border-box;
+    padding: 0 50px;
+    padding-top: 100px;
+    justify-content: left;
+}
+
+.buttonContainer {
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 30px;
+  margin-bottom: 20px;
+}

@@ -144,21 +144,7 @@ export default function AdminMatchesSection({onSearch}:Props) {
     return (
         <section className={styles.section}>
 
-            <div className={styles.sectionHeader}>
-                <div className={`${styles.arrow} ${styles.arrowLeft}`}>
-                    <Image src="/arrow-left.svg" alt="Decoration" width={136} height={136} />
-                    <Image src="/arrow-left.svg" alt="Decoration" width={136} height={136} />
-                    <Image src="/arrow-left.svg" alt="Decoration" width={136} height={136} />
-                </div>
 
-                <h2 className={styles.title}>Matches</h2>
-
-                <div className={`${styles.arrow} ${styles.arrowRight}`}>
-                    <Image src="/arrow-right.svg" alt="Decoration" width={136} height={136} />
-                    <Image src="/arrow-right.svg" alt="Decoration" width={136} height={136} />
-                    <Image src="/arrow-right.svg" alt="Decoration" width={136} height={136} />
-                </div>
-            </div>
 
             <div className={styles.cardWrapper}>
 

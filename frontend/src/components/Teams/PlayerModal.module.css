@@ -1,0 +1,84 @@
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(3px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal {
+    background-color: #556B60;
+    padding: 30px;
+    border-radius: 12px;
+    max-width: 95%;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+    color: white;
+    font-family: sans-serif;
+    position: relative;
+}
+
+.row {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.col {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.colSmall {
+    flex: 0.3;
+}
+
+.label {
+    font-family: "Avenir Next", sans-serif;
+    font-size: 20px;
+    font-style: italic;
+    color: #C7C7C7;
+    margin-bottom: 4px;
+    margin-left: 10px;
+    font-weight: 400;
+}
+
+.input {
+    font-family: "Lexend", sans-serif;
+    background-color: #DADFE1;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 15px;
+    font-size: 24px;
+    font-weight: 400;
+    color: #00223B;
+    width: 100%;
+    outline: none;
+
+}
+
+.input:focus {
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
+}
+
+.textarea {
+    min-height: 120px;
+    resize: vertical;
+    font-weight: 300;
+    line-height: 1.5;
+    font-size: 22px;
+}
+
+.buttonContainer {
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}

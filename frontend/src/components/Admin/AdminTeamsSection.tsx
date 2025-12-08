@@ -1,5 +1,6 @@
 import styles from "./AdminTeamsSection.module.css";
 import Image from "next/image";
+import Link from 'next/link';
 import {NoteButton} from "@/src/components/ui/NoteButton";
 import FilterBar, {FilterConfig} from "@/src/components/ui/FilterBar";
 
@@ -219,8 +220,11 @@ export default function TeamsSection({onSearch}:Props) {
 
                         </div>
                         <div className={styles.cardFooter}>
+
+                            <Link href="/admin/TeamPageEdit">
                             <NoteButton style={{ backgroundColor: 'rgba(127, 138, 113, 1)'}}>
                                 Edit Team Page</NoteButton>
+                            </Link>
                         </div>
 
                     </div>

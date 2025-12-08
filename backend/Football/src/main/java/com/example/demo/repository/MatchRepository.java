@@ -6,4 +6,7 @@ import com.example.demo.model.Match;
 
 public interface MatchRepository extends JpaRepository<Match, Long> {
 
+    List<Match> findByTeamOneIdOrTeamTwoId(Long teamOneId, Long teamTwoId);
+
+    List<Match> findByMatchDate(LocalDate matchDate);
 }

@@ -1,8 +1,14 @@
 "use client";
 import Link from "next/link";
+import { useEffect } from "react";
 import Image from "next/image";
 import styles from "./Header.module.css";
 import { useActivePath } from "../../hooks/useActivePath";
+import { useState } from "react";
+import Registration from "../Authorization/Registration"
+import LogIn from "../Authorization/Login"
+import ResetModal from "../Authorization/Reset-password"
+
 
 export default function Header() {
     const isHome = useActivePath("/");
@@ -10,6 +16,26 @@ export default function Header() {
     const isTeams = useActivePath("/teams");
     const isAccount = useActivePath("/account");
     const isFavorites = useActivePath("/favorites");
+    const [isAuth, setIsAuth] = useState(false);
+    const [isResetModalOpen, setIsResetModalOpen] = useState(false);
+
+    const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+        if (!isAuth) {
+            e.preventDefault();
+            setIsRegModalOpen(true);
+        }
+    };
+
+    /*useEffect(() => {
+        const savedAuth = localStorage.getItem("isAuth");
+        if (savedAuth === "true") {
+            setIsAuth(true);
+        }
+    }, []);*/
+
+    const [isRegModalOpen, setIsRegModalOpen] = useState(false);
+    const [isLogInModalOpen, setIsLogInModalOpen] = useState(false);
+
 
     return (
         <header className={styles.header}>
@@ -63,11 +89,51 @@ export default function Header() {
 
                 <div className={styles.icons}>
 
-                    <Link href="/account" className={styles.iconLink}>
+                    <Link
+                        className={styles.iconLink}
+                        onClick={handleClick}
+                        href={isAuth ? "/account" : "#"}
+                    >
                         <div className={styles.iconWrapper}>
-                            <Image src={isAccount ? "/icons/user-active.svg" : "/icons/user.svg"} alt="user" width={30} height={30} />
+                            <Image
+                                src={isAccount ? "/icons/user-active.svg" : "/icons/user.svg"}
+                                alt="user"
+                                width={30}
+                                height={30}
+                            />
                         </div>
                     </Link>
+                    {isRegModalOpen && (
+                        <Registration
+                            onClose={() => setIsRegModalOpen(false)}
+                            onSuccess={() => setIsAuth(true)}
+                            onSwitchToLogIn={() => {
+                                setIsLogInModalOpen(true);
+                                setIsRegModalOpen(false);
+                            }}
+                        />
+                    )}
+
+                    {isLogInModalOpen && (
+                        <LogIn
+                            onClose={() => setIsLogInModalOpen(false)}
+                            onSuccess={() => setIsAuth(true)}
+                            onSwitchToReg={() => {
+                                setIsRegModalOpen(true);
+                                setIsLogInModalOpen(false);
+                            }}
+                            onSwitchToReset={() => {
+                                setIsResetModalOpen(true);
+                                setIsLogInModalOpen(false);
+                            }}
+                        />
+                    )}
+
+                    {isResetModalOpen && (
+                        <ResetModal
+                            onClose={() => setIsResetModalOpen(false)}
+                        />
+                    )}
 
                     <Link href="/favorites" className={styles.iconLink}>
                         <div className={styles.iconWrapper}>

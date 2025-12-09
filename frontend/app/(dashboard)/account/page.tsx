@@ -3,6 +3,7 @@ import styles from "./page.module.css";
 import { useState, useRef } from "react";
 import EditProfile from "../../../src/components/Authorization/Edit-profile"
 import ChangePasswordModal from "@/src/components/Authorization/Change-password";
+import TitleWithButtons from "@/src/components/ui/TitleWithButtons";
 export default function Account() {
 
     const testuser = {
@@ -50,12 +51,11 @@ export default function Account() {
 
     return (
         <div className={styles["account-page"]}>
-            <h1 className={styles["account-title"]}>Your Profile</h1>
 
-            <div className={styles["btn-container"]}>
-                <button className={styles["btn"]}>Favorites</button>
-                <button className={styles["btn"]}>Calendar</button>
-            </div>
+            <TitleWithButtons
+                title="Your profile"
+                buttons={["Favorites", "Calendar"]}
+            />
 
             <div className={styles["account-container"]}>
                 <h2 className={styles["greeting"]}>Welcome, <b>birdie!</b></h2>

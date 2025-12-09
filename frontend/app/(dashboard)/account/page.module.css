@@ -6,6 +6,9 @@ body {
 .account-container {
   position: static;
   overflow: visible;
+  padding-top: 140px;
+
+
 }
 
 .account-title {
@@ -44,18 +47,18 @@ body {
   background: rgba(93, 112, 101, 1);
   width: 83vw;
   padding: 3vw;
-  justify-self: center;
   border-radius: 12px;
   border: 2px solid rgba(255, 255, 255, 1);
   outline: 2px solid rgba(199, 199, 199, 1);
   outline-offset: 15px;
-  margin: 3vw 0vw;
+
+  margin: 3vw auto;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-
 .greeting {
   margin: 3vh;
   font-family: "Lexend";

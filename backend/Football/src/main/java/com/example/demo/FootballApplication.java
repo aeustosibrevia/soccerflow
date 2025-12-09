@@ -4,10 +4,12 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.example.demo.repository.RoleRepository;
 import com.example.demo.repository.UserRepository;
+import com.example.demo.service.CustomUserDetailService;
 import com.example.demo.usermodel.Role;
 import com.example.demo.usermodel.User;
 
@@ -19,7 +21,7 @@ public class FootballApplication {
 	}
 	@Bean
 	ApplicationRunner run( UserRepository userRepository, RoleRepository roleRepository,
-			PasswordEncoder encode){ {
+			PasswordEncoder encode){ 
 		return args->{
 			Role adminRole=roleRepository.findByRole("ROLE_ADMIN")
 					.orElseGet(()->roleRepository.save(new Role("ROLE_ADMIN")));
@@ -37,6 +39,9 @@ public class FootballApplication {
 		};
 	}
 		
+	@Bean
+	UserDetailsService userDetailsService(CustomUserDetailService custom) {
+	    return custom;
 	}
 
 }

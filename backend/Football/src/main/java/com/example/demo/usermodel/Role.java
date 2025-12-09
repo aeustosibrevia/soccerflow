@@ -27,6 +27,9 @@ public class Role implements GrantedAuthority {
 		super();
 		this.role = role;
 	}
+	public Role() {
+		super();
+	}
 	
 
 }

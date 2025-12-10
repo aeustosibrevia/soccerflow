@@ -1,5 +1,6 @@
 package com.example.demo.api.matches;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.model.Match;
 import com.example.demo.repository.MatchRepository;
 import com.example.demo.repository.TournamentRepository;
+import com.example.demo.repository.TeamRepository;
 
 import lombok.AllArgsConstructor;
 
@@ -91,22 +93,22 @@ public class ApiMatch {
     @PreAuthorize("hasAnyRole('EDITOR','ADMIN')")
     public ResponseEntity<?> createMatch(@RequestBody Match match) {
 
-        if (match.getHomeTeam() == null || match.getAwayTeam() == null) {
+        if (match.getTeamOne() == null || match.getTeamTwo() == null) {
             return ResponseEntity.badRequest()
                     .body("Home or Away team is missing");
         }
 
-        if (match.getHomeTeam().getId()
-                .equals(match.getAwayTeam().getId())) {
+        if (match.getTeamOne().getId()
+                .equals(match.getTeamTwo().getId())) {
             return ResponseEntity.badRequest()
                     .body("Home and Away team can't be equal");
         }
 
-        teamRepository.findById(match.getHomeTeam().getId())
-                .ifPresent(match::setHomeTeam);
+        teamRepository.findById(match.getTeamOne().getId())
+                .ifPresent(match::setTeamOne);
 
-        teamRepository.findById(match.getAwayTeam().getId())
-                .ifPresent(match::setAwayTeam);
+        teamRepository.findById(match.getTeamTwo().getId())
+                .ifPresent(match::setTeamTwo);
 
         if (match.getTournament() != null) {
             tournamentRepository
@@ -157,8 +159,10 @@ public class ApiMatch {
 
         Match match = matchOpt.get();
 
-        match.setDateTime(newMatch.getDateTime());
-        match.setScoreJson(newMatch.getScoreJson());
+        match.setMatchDate(newMatch.getMatchDate());
+        match.setMatchTime(newMatch.getMatchTime());
+        match.setScoreTeamOne(newMatch.getScoreTeamOne());
+        match.setScoreTeamTwo(newMatch.getScoreTeamTwo());
 
         if (newMatch.getTournament() != null) {
             tournamentRepository
@@ -166,16 +170,16 @@ public class ApiMatch {
                     .ifPresent(match::setTournament);
         }
 
-        if (newMatch.getHomeTeam() != null) {
+        if (newMatch.getTeamOne() != null) {
             teamRepository
-                    .findById(newMatch.getHomeTeam().getId())
-                    .ifPresent(match::setHomeTeam);
+                    .findById(newMatch.getTeamOne().getId())
+                    .ifPresent(match::setTeamOne);
         }
 
-        if (newMatch.getAwayTeam() != null) {
+        if (newMatch.getTeamTwo() != null) {
             teamRepository
-                    .findById(newMatch.getAwayTeam().getId())
-                    .ifPresent(match::setAwayTeam);
+                    .findById(newMatch.getTeamTwo().getId())
+                    .ifPresent(match::setTeamTwo);
         }
 
         matchRepository.save(match);

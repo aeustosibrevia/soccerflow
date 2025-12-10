@@ -38,6 +38,9 @@ public class Match {
 	
 	private Integer scoreTeamOne;
 	private Integer scoreTeamTwo;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	private Tournament tournament;
 	
 	@OneToMany(mappedBy = "match", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<PlayerStatisticInMatch> playerStatistics;

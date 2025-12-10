@@ -4,6 +4,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.example.demo.model.Tournament;
 
+import java.time.LocalDate;
+import java.util.List;
+
 public interface TournamentRepository extends JpaRepository<Tournament,Long> {
 
     List<Tournament> findByCountryIgnoreCase(String country);

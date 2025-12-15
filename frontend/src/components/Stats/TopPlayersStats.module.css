@@ -1,0 +1,232 @@
+.section {
+    width: 100%;
+    margin: 60px auto 100px;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: "Lexend", sans-serif;
+    box-sizing: border-box;
+    max-width: 1400px;
+}
+
+.timelineContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.categoryGroup {
+    display: flex;
+    width: 100%;
+    position: relative;
+    padding-bottom: 40px;
+}
+
+.leftColumn {
+    width: 180px;
+    min-width: 180px;
+    position: relative;
+}
+
+.titleWrapper {
+    height: 40px;
+    position: relative;
+    margin-right: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 24px;
+}
+
+.categoryTitle {
+    background: rgba(199, 199, 199, 1);
+    color: #1e293b;
+    padding: 0 12px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    font-weight: 400;
+    font-size: 20px;
+    white-space: nowrap;
+    font-family:  "Lexend", sans-serif;
+}
+.timelineContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.categoryGroup {
+    display: flex;
+    width: 100%;
+    position: relative;
+    padding-bottom: 0;
+}
+
+.leftColumn {
+    width: 180px;
+    min-width: 180px;
+    position: relative;
+    padding-bottom: 40px;
+}
+
+.listWrapper {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-top: 0;
+    padding-bottom: 40px;
+}
+
+.timelineLine {
+    position: absolute;
+    right: 10px;
+    width: 4px;
+    background-color: #7F8A71;
+    z-index: 1;
+    top: 0;
+    bottom: 0;
+    height: auto;
+}
+
+.categoryGroup:first-child .leftColumn .timelineLine {
+    top: 20px;
+    bottom: 0;
+}
+
+.categoryGroup:last-child .leftColumn .timelineLine {
+    top: 0;
+    bottom: 40px;
+    height: auto;
+}
+
+.timelineDot {
+    width: 14px;
+    height: 14px;
+    background-color: #7F8A71;
+    border-radius: 50%;
+    position: absolute;
+    right: 5px;
+    top: 13px;
+    z-index: 3;
+}
+
+
+.listWrapper {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-top: 0;
+}
+
+.tableHeader {
+    display: grid;
+    align-items: center;
+    font-size: 18px;
+    color: rgba(199, 199, 199, 0.9);
+    letter-spacing: 1px;
+    font-family: "Lexend", sans-serif;
+    padding: 0 16px;
+    margin-bottom: 6px;
+    text-transform: capitalize;
+    height: 40px;
+}
+
+.playersList {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.card {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 8px 16px;
+    border-radius: 16px;
+}
+
+.gridSingle {
+    display: grid;
+    grid-template-columns: 60px 240px 200px 100px 160px;
+    column-gap: 16px;
+    align-items: center;
+}
+
+.gridDouble {
+    display: grid;
+    grid-template-columns: 60px 240px 200px 80px 80px 160px;
+    column-gap: 16px;
+    align-items: center;
+}
+
+.playerGrid {
+    width: 100%;
+}
+
+.rankChip {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: rgba(199, 199, 199, 1);
+    color: #000;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 16px;
+    justify-self: center;
+}
+
+.infoChip {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 40px;
+    background: rgba(199, 199, 199, 1);
+    color: #000;
+    border-radius: 12px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 0 10px;
+    box-sizing: border-box;
+    font-family: "Lexend", sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+}
+
+.statChip {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 40px;
+    background: rgba(199, 199, 199, 1);
+    color: #000;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.actions {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.moreInfoBtn {
+    font-family: 'Lexend', sans-serif;
+    width: 100%;
+    height: 40px;
+    font-size: 14px !important;
+    font-weight: 400 !important;
+}

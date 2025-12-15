@@ -16,6 +16,9 @@ export default function Header() {
     const isTeams = useActivePath("/teams");
     const isAccount = useActivePath("/account");
     const isFavorites = useActivePath("/favorites");
+    const isStatistics = useActivePath("/stats");
+    const isTournaments = useActivePath("/tournaments");
+
     const [isAuth, setIsAuth] = useState(false);
     const [isResetModalOpen, setIsResetModalOpen] = useState(false);
 
@@ -74,6 +77,20 @@ export default function Header() {
                 >
                     Home
                 </Link>
+                <Link
+                    href="/tournaments"
+                    className={`${styles.navLink} ${isTournaments ? styles.active : ""}`}
+                >
+                    Tournaments
+                </Link>
+
+                <Link
+                    href="/stats"
+                    className={`${styles.navLink} ${isStatistics ? styles.active : ""}`}
+                >
+                    Statistics
+                </Link>
+
                 <Link
                     href="/matches"
                     className={`${styles.navLink} ${isMatches ? styles.active : ""}`}

@@ -22,31 +22,35 @@ import lombok.RequiredArgsConstructor;
 @EnableMethodSecurity(prePostEnabled = true)
 @AllArgsConstructor
 public class SecurirtyConfig {
-	private CustomUserDetailService userDetailService;
+    private CustomUserDetailService userDetailService;
 
-	@Bean
-	PasswordEncoder passwordencoder() {
-		return new BCryptPasswordEncoder();
-	}
-	@Bean
-	AuthenticationManager authManager(HttpSecurity http) throws Exception {
-		return http.getSharedObject(AuthenticationManagerBuilder.class)
-				.userDetailsService(userDetailService)
-				.passwordEncoder(passwordencoder())
-				.and()
-				.build();
-	}
+    @Bean
+    PasswordEncoder passwordencoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    AuthenticationManager authManager(HttpSecurity http) throws Exception {
+        return http.getSharedObject(AuthenticationManagerBuilder.class)
+                .userDetailsService(userDetailService)
+                .passwordEncoder(passwordencoder())
+                .and()
+                .build();
+    }
 
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-		http.csrf((csrf) -> csrf.disable())
-				.authorizeHttpRequests(
-						auth -> auth.requestMatchers("/api/register","/api/login").permitAll()
-						.anyRequest().authenticated())
-				.httpBasic(Customizer.withDefaults());
-		return http.build();
-		
-		
-	}
+        http
+                .cors(Customizer.withDefaults()) // ← ВАЖНО
+                .csrf(csrf -> csrf.disable())
+
+                .authorizeHttpRequests(
+                        auth -> auth.requestMatchers("/api/register", "/api/login").permitAll()
+                                .anyRequest().authenticated())
+                .httpBasic(Customizer.withDefaults());
+        return http.build();
+
+
+    }
 
 }

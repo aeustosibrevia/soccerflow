@@ -37,7 +37,7 @@ public class Tournament {
 	
 	@ManyToMany(cascade=CascadeType.ALL)
 	@JoinTable(
-		name="tournament_Tteams",
+		name="tournament_teams",
 		joinColumns=@JoinColumn(name="tournament_id"),
 		inverseJoinColumns=@JoinColumn(name="team_id")
 			)

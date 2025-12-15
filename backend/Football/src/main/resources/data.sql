@@ -1,4 +1,4 @@
-INSERT INTO team(id,name,country) VALUES
+INSERT INTO teams(id,name,country) VALUES
                                       (1,'Barcelona','Spain'),
                                       (2,'Real Madrid','Spain'),
                                       (3,'Manchester City','England'),
@@ -9,7 +9,7 @@ INSERT INTO team(id,name,country) VALUES
                                       (8,'Inter Milan','Italy'),
                                       (9,'PSG','France'),
                                       (10,'Arsenal','England');
-INSERT INTO player
+INSERT INTO players
 (id, first_name, second_name, last_name, date_of_birth, position, team_id)
 VALUES
 

@@ -1,11 +1,11 @@
-CREATE TABLE IF NOT EXISTS team (
+CREATE TABLE IF NOT EXISTS teams (
                       id INTEGER PRIMARY KEY AUTOINCREMENT,
                       name TEXT NOT NULL,
                       country TEXT NOT NULL,
                       logo TEXT
 );
 
-CREATE TABLE IF NOT EXISTS player (
+CREATE TABLE IF NOT EXISTS players (
                         id INTEGER PRIMARY KEY AUTOINCREMENT,
                         first_name TEXT NOT NULL,
                         second_name TEXT NOT NULL,

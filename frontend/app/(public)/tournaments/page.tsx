@@ -7,7 +7,7 @@ import TournamentsSection from "@/src/components/Tournament/TournamentSection";
 
 
 
-export default function Favorites() {
+export default function Tournaments() {
 
     return (
 

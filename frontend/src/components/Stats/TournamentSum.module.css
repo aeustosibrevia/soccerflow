@@ -1,0 +1,94 @@
+.section {
+    width: 100%;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: "Lexend", sans-serif;
+    box-sizing: border-box;
+    margin: 20px auto 100px;
+}
+
+.contentContainer {
+    width: 100%;
+    max-width: 1440px;
+    display: flex;
+    flex-direction: column;
+}
+
+.listWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.tableHeader,
+.tournamentGrid {
+    display: grid;
+    width: 100%;
+
+    grid-template-columns:
+        minmax(180px, 1.5fr)
+        minmax(120px, 1fr)
+        minmax(120px, 1fr)
+        minmax(80px, 0.6fr)
+        minmax(80px, 0.6fr)
+        minmax(140px, 1.1fr)
+        minmax(140px, 1.1fr)
+        minmax(110px, 0.9fr);
+
+    column-gap: 12px;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.tableHeader {
+    margin-bottom: 12px;
+    font-size: 14px;
+    color: rgba(199, 199, 199, 0.9);
+    font-family: "Lexend", sans-serif;
+    letter-spacing: 0.5px;
+    padding: 0 16px;
+    align-items: end;
+    text-align: center;
+    line-height: 1.25;
+    padding-bottom: 5px;
+}
+
+
+
+.card {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 12px 16px;
+
+    border-radius: 16px;
+    backdrop-filter: blur(6px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18);
+    color: #f9fafb;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.03);
+    box-sizing: border-box;
+}
+
+.chip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 0;
+    width: 100%;
+    height: 36px;
+
+    border-radius: 12px;
+    background: rgba(217, 217, 217, 1);
+    color: rgba(0, 0, 0, 1);
+
+    font-size: 15px;
+    font-family: "Lexend", sans-serif;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

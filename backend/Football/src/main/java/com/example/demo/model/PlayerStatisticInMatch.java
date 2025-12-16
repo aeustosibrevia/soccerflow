@@ -1,5 +1,8 @@
 package com.example.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -22,6 +25,7 @@ import lombok.Setter;
 			@UniqueConstraint(columnNames = {"player_id", "match_id"})
 	}
 		)
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class PlayerStatisticInMatch {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -29,10 +33,12 @@ public class PlayerStatisticInMatch {
 	
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "player_id", nullable = false)
+    @JsonBackReference(value = "player-specific-stat")
 	private Player player;
     
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "match_id", nullable = false)
+    @JsonBackReference(value = "player-stat")
     private Match match;
     
     @Column(nullable = false)

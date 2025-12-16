@@ -183,6 +183,11 @@ VALUES
     (149,'Reiss',' ','Nelson','1999-12-10','forward',10),
     (150,'Jurrien',' ','Timber','2001-06-17','defender',10);
 
+INSERT INTO tournaments(id,name,country,type,start_date,end_date)
+VALUES
+    (1,'Demo Champions League','EU','INTERNATIONAL','2025-02-01','2025-05-30'),
+    (2,'Demo Europa League','EU','INTERNATIONAL','2025-02-01','2025-04-30'),
+    (3,'National League','EU','LEAGUE','2025-03-01','2025-10-01');
 INSERT INTO matches
 (id, match_date, match_time, team_one_id, team_two_id, score_team_one, score_team_two, tournament_id)
 VALUES
@@ -199,11 +204,7 @@ VALUES
     (9,'2025-05-09','19:30',10,6,1,1,3),
     (10,'2025-05-10','20:45',1,8,2,2,3);
 
-INSERT INTO tournaments(id,name,country,type,start_date,end_date)
-VALUES
-    (1,'Demo Champions League','EU','INTERNATIONAL','2025-02-01','2025-05-30'),
-    (2,'Demo Europa League','EU','INTERNATIONAL','2025-02-01','2025-04-30'),
-    (3,'National League','EU','LEAGUE','2025-03-01','2025-10-01');
+
 
 INSERT INTO player_stat
 (player_id, match_id, goals, assists, yellow_cards, red_cards,
@@ -260,17 +261,8 @@ VALUES
 (9,5,1,1,2,0,5,46,472,19,3,7.6),
 (10,5,2,2,1,0,7,54,533,14,1,8.3);
 
-INSERT INTO roles(id, role) VALUES
-                                (1, 'ROLE_ADMIN'),
-                                (2, 'ROLE_EDITOR'),
-                                (3, 'ROLE_USER');
-
-INSERT INTO users(id, username, password) VALUES
-                                              (1, 'admin', '$2a$10$4CFZJ6G4kDfmVxuxMxDP.eCYwH.3Tjd8sDxeqmoeZaZX6mE6xPD7O'),
-                                              (2, 'editor', '$2a$10$kqIY6qd7qV3CyMfCVx/gUuQk0u5QGehGII4XESyqSeX5TR1f0NenC'),
-                                              (3, 'user', '$2a$10$G6e5kLlwM651c01qmPvQeu6YewsGQIOzBSSMSmc5QwDFi1Cdm42H2');
-
-INSERT INTO user_roles(user_id, role_id) VALUES
-                                             (1, 1),
-                                             (2, 2),
-                                             (3, 3);
+SELECT setval('teams_id_seq', (SELECT MAX(id) FROM teams));
+SELECT setval('players_id_seq', (SELECT MAX(id) FROM players));
+SELECT setval('tournaments_id_seq', (SELECT MAX(id) FROM tournaments));
+SELECT setval('matches_id_seq', (SELECT MAX(id) FROM matches));
+SELECT setval('player_stat_id_seq', (SELECT MAX(id) FROM player_stat));

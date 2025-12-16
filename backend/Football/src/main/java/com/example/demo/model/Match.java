@@ -1,8 +1,15 @@
 package com.example.demo.model;
 
+import java.sql.Types;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
+
+import org.hibernate.annotations.JdbcTypeCode;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -21,6 +28,7 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name="matches")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Match {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -43,6 +51,7 @@ public class Match {
 	private Tournament tournament;
 	
 	@OneToMany(mappedBy = "match", cascade = CascadeType.ALL, orphanRemoval = true)
+	@JsonManagedReference(value = "player-stat")
     private List<PlayerStatisticInMatch> playerStatistics;
 
 }

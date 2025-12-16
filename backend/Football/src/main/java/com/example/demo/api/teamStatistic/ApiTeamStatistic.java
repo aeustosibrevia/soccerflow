@@ -1,4 +1,4 @@
-package com.example.demo.api.teamstat;
+package com.example.demo.api.teamStatistic;
 
 import java.util.List;
 import java.util.Optional;

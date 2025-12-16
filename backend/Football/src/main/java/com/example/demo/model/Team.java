@@ -2,6 +2,7 @@ package com.example.demo.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
@@ -19,6 +20,7 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name="teams")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Team {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -27,11 +29,10 @@ public class Team {
 	private String name;
 	@Column(nullable = false)
 	private String country;
-	@Column(nullable = false)
 	private String logo;
 	
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true,
-			mappedBy = "teamId")
-    @JsonManagedReference
+			mappedBy = "team")
+    @JsonManagedReference(value = "team-player")
 	private List<Player> players;
 }

@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.model.Player;
-import com.example.demo.repository.PlayerRepository;
-import com.example.demo.repository.TeamRepository;
+import com.example.demo.service.PlayerService;
+import com.example.demo.service.TeamService;
 
 import lombok.AllArgsConstructor;
 
@@ -25,20 +25,20 @@ import lombok.AllArgsConstructor;
 @RequestMapping(path="/api/players")
 @AllArgsConstructor
 public class ApiPlayer {
-	private PlayerRepository playerRepository;
-	private TeamRepository teamRepository;
+	private TeamService teamService;
+	private PlayerService playerService;
 	
 	@GetMapping
 	@PreAuthorize("hasAnyRole('USER','EDITOR','ADMIN')")
 	public List<Player> getPlayers() {
-		return playerRepository.findAll();
+		return playerService.getAllPlayers();
 		
 	}
 	
 	@GetMapping(path="/{id}")
 	@PreAuthorize("hasAnyRole('USER','EDITOR','ADMIN')")
 	public ResponseEntity<?> getPlayerById(@PathVariable Long id) {
-		Optional<Player> playerOptional=playerRepository.findById(id);
+		Optional<Player> playerOptional=playerService.getPlayerById(id);
 		if(playerOptional.isPresent()) {
 		return ResponseEntity.ok(playerOptional.get());
 		}else {
@@ -49,16 +49,16 @@ public class ApiPlayer {
 	@PostMapping
 	@PreAuthorize("hasAnyRole('EDITOR','ADMIN')")
 	public ResponseEntity<?> postPlayer(@RequestBody Player player){
-		Optional<Player> playerOptional=playerRepository
-				.findByFirstNameAndSecondNameAndDateOfBirth(player.getFirstName(), 
+		Optional<Player> playerOptional=playerService
+				.getPlayerByFirstNameAndSecondNameAndDateOfBirth(player.getFirstName(), 
 						player.getSecondName(), player.getDateOfBirth());
 		if(playerOptional.isEmpty()) {
-			if(player.getTeamId()!=null) {
-				Long teamId = player.getTeamId().getId();
-		        teamRepository.findById(teamId).ifPresent(player::setTeamId);
+			if(player.getTeam()!=null) {
+				Long teamId = player.getTeam().getId();
+		        teamService.getTeamsById(teamId).ifPresent(player::setTeam);
 				
 			}
-			playerRepository.save(player);
+			playerService.savePlayer(player);
 			return ResponseEntity.status(HttpStatus.CREATED).body("Team created succsessfuly");
 		}else {
 			return ResponseEntity.status(HttpStatus.CONFLICT).body("Invalid arguments");
@@ -67,12 +67,12 @@ public class ApiPlayer {
 	@DeleteMapping(path="/{id}")
 	@PreAuthorize("hasAnyRole('EDITOR','ADMIN')")
 	public ResponseEntity<?> deletePlayer(@PathVariable Long id){
-		Optional<Player> playerOptional=playerRepository.findById(id);
+		Optional<Player> playerOptional=playerService.getPlayerById(id);
 		if(playerOptional.isEmpty()) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No team with this id");
 		}else {
 			Player player= playerOptional.get();
-			playerRepository.delete(player);
+			playerService.deletePlayer(player);
 			return ResponseEntity.status(HttpStatus.OK).body("Deleted Successfully");
 		}
 		
@@ -80,7 +80,7 @@ public class ApiPlayer {
 	@PutMapping(path="/{id}")
 	@PreAuthorize("hasAnyRole('EDITOR','ADMIN')")
 	public ResponseEntity<?> updatePlayer(@PathVariable Long id, @RequestBody Player newPlayer){
-		Optional<Player> playerOptional=playerRepository.findById(id);
+		Optional<Player> playerOptional=playerService.getPlayerById(id);
 		if(playerOptional.isEmpty()) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No team with this id");
 		}
@@ -90,12 +90,12 @@ public class ApiPlayer {
 		player.setLastName(newPlayer.getLastName());
 		player.setDateOfBirth(newPlayer.getDateOfBirth());
 		player.setPosition(newPlayer.getPosition());
-		if (newPlayer.getTeamId() != null) {
-			Long teamId = player.getTeamId().getId();
-	        teamRepository.findById(teamId).ifPresent(player::setTeamId);
+		if (newPlayer.getTeam() != null) {
+			Long teamId = player.getTeam().getId();
+	        teamService.getTeamsById(teamId).ifPresent(player::setTeam);
         }
 
-        return ResponseEntity.ok(playerRepository.save(player));
+        return ResponseEntity.ok(playerService.savePlayer(player));
 	}
 }
 

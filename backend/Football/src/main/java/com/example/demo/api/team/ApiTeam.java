@@ -1,6 +1,7 @@
 package com.example.demo.api.team;
 
-import java.time.LocalDate;
+
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -9,6 +10,7 @@ import java.util.Optional;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.util.ReflectionUtils;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -21,8 +23,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.model.Player;
 import com.example.demo.model.Team;
-import com.example.demo.repository.PlayerRepository;
-import com.example.demo.repository.TeamRepository;
+import com.example.demo.service.PlayerService;
+import com.example.demo.service.TeamService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.fge.jsonpatch.JsonPatch;
+import com.github.fge.jsonpatch.JsonPatchException;
 
 import lombok.AllArgsConstructor;
 
@@ -30,29 +37,35 @@ import lombok.AllArgsConstructor;
 @RequestMapping(path="/api/teams")
 @AllArgsConstructor
 public class ApiTeam {
-	private TeamRepository teamRepository;
-	private PlayerRepository playerRepository;
+	private TeamService teamService;
+	private PlayerService playerService;
+
 	
 	@GetMapping
 	@PreAuthorize("hasAnyRole('USER','EDITOR','ADMIN')")
 	public List<Team> getTeams() {
-		return teamRepository.findAll();
+		return teamService.getAllTeams();
 		
 	}
 	
 	@GetMapping(path="/{id}")
 	@PreAuthorize("hasAnyRole('USER','EDITOR','ADMIN')")
-	public Optional<Team> getTeamsById(@PathVariable Long id) {
-		return teamRepository.findById(id);
+	public ResponseEntity<?> getTeamsById(@PathVariable Long id) {
+		Optional<Team> teamOptional=teamService.getTeamsById(id);
+		if(teamOptional.isEmpty()) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Invalid arguments");
+		}else {
+			return ResponseEntity.ok(teamService.getTeamsById(id));
+		}
 		
 	}
 	
 	@PostMapping
 	@PreAuthorize("hasAnyRole('EDITOR','ADMIN')")
 	public ResponseEntity<?> postTeam(@RequestBody Team team){
-		Optional<Team> getTeam=teamRepository.findByName(team.getName());
+		Optional<Team> getTeam=teamService.getTeamsByName(team.getName());
 		if(getTeam.isEmpty()) {
-			teamRepository.save(team);
+			teamService.saveTeam(team);
 			return ResponseEntity.status(HttpStatus.CREATED).body("Team created succsessfuly");
 		}else {
 			return ResponseEntity.status(HttpStatus.CONFLICT).body("Invalid arguments");
@@ -62,7 +75,7 @@ public class ApiTeam {
 		@PutMapping(path="/{id}")
 		@PreAuthorize("hasAnyRole('EDITOR','ADMIN')")
 		public ResponseEntity<?> updateTeam(@PathVariable Long id, @RequestBody Team newTeam){
-			Optional<Team> teamId=teamRepository.findById(id);
+			Optional<Team> teamId=teamService.getTeamsById(id);
 			if(teamId.isEmpty()) {
 				return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No team with this id");
 			}
@@ -75,12 +88,12 @@ public class ApiTeam {
 
 		    for (Player player : newTeam.getPlayers()) {
 		        if (player.getId() != null) {
-		            Player existingPlayer = playerRepository.findById(player.getId())
+		            Player existingPlayer = playerService.getPlayerById(player.getId())
 		                .orElseThrow(() -> new RuntimeException("Player not found: " + player.getId()));
-		            existingPlayer.setTeamId(team);
+		            existingPlayer.setTeam(team);
 		            newPlayers.add(existingPlayer);
 		        } else {
-		            player.setTeamId(team);
+		            player.setTeam(team);
 		            newPlayers.add(player);
 		        }
 		    }
@@ -89,73 +102,66 @@ public class ApiTeam {
 		    team.getPlayers().clear();
 		    team.getPlayers().addAll(newPlayers);
 
-		    Team saved = teamRepository.save(team);
+		    Team saved = teamService.saveTeam(team);
 		    return ResponseEntity.ok(saved);
 			
 		}
 		@DeleteMapping(path="/{id}")
 		@PreAuthorize("hasAnyRole('EDITOR','ADMIN')")
 		public ResponseEntity<?> deleteTeam(@PathVariable Long id){
-			Optional<Team> teamId=teamRepository.findById(id);
+			Optional<Team> teamId=teamService.getTeamsById(id);
 			if(teamId.isEmpty()) {
 				return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No team with this id");
 			}else {
 				Team team= teamId.get();
-				teamRepository.delete(team);
+				teamService.deleteTeam(team);
 				return ResponseEntity.status(HttpStatus.OK).body("Deleted Successfully");
 			}
 			
 		}
-		@PatchMapping("/{id}")
+
+		//RFC 7386
+		@PatchMapping(value = "/{id}", consumes = "application/json") 
 		@PreAuthorize("hasAnyRole('EDITOR','ADMIN')")
-		public ResponseEntity<?> patchTeam(@PathVariable Long id, 
-				@RequestBody Map<String, Object> updates) {
-		    Optional<Team> optionalTeam = teamRepository.findById(id);
-		    if (optionalTeam.isEmpty()) {
-		        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No team with this id");
-		    }
+		public ResponseEntity<?> updateTeamPartially(@PathVariable Long id, @RequestBody Map<String, Object> fields) {
+			Optional<Team> teamOptional = teamService.getTeamsById(id);
+			if (teamOptional.isEmpty()) {
+				return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No team with this id");
+			} else {
 
-		    Team team = optionalTeam.get();
-		    if (updates.containsKey("name")) {
-		        team.setName((String) updates.get("name"));
-		    }
-		    if (updates.containsKey("country")) {
-		        team.setCountry((String) updates.get("country"));
-		    }
-		    if (updates.containsKey("logo")) {
-		        team.setLogo((String) updates.get("logo"));
-		    }
+				fields.forEach((key, value) -> {
 
-		    if (updates.containsKey("players")) {
-		        List<Map<String, Object>> playersJson =  (List<Map<String, Object>>) updates.get("players");
-		        List<Player> updatedPlayers = new ArrayList<>();
+					Field field = ReflectionUtils.findField(Team.class, key);
+					if (field != null) {
+						field.setAccessible(true);
 
-		        for (Map<String, Object> p : playersJson) {
-		            if (p.containsKey("id")) {
-		                Long playerId = ((Number) p.get("id")).longValue();
-		                Optional<Player> optionalPlayer = playerRepository.findById(playerId);
-		                if (optionalPlayer.isPresent()) {
-		                    Player player = optionalPlayer.get();
-		                    player.setTeamId(team);
-		                    updatedPlayers.add(player);
-		                }
-		            }
-		        }
+						ReflectionUtils.setField(field, teamOptional.get(), value);
+					}
+				});
 
-		        List<Player> currentPlayers = team.getPlayers();
-		        currentPlayers.removeIf(player -> !updatedPlayers.contains(player));
-
-		        for (Player player : updatedPlayers) {
-		            if (!currentPlayers.contains(player)) {
-		                currentPlayers.add(player);
-		            }
-		        }
-
-		        team.setPlayers(currentPlayers);
-		    }
-
-		    Team savedTeam = teamRepository.save(team);
-		    return ResponseEntity.ok(savedTeam);
+				Team updatedTeam = teamService.saveTeam(teamOptional.get());
+				return ResponseEntity.ok(updatedTeam);
+			}
 		}
+		
+		//RFC 6902
+		@PatchMapping(value = "/{id}", consumes = "application/json-patch+json")
+		@PreAuthorize("hasAnyRole('EDITOR','ADMIN')")
+		public ResponseEntity<?> applyJsonPatch(@PathVariable Long id, @RequestBody JsonPatch patch) 
+				throws JsonProcessingException, IllegalArgumentException, JsonPatchException {
+		    	Optional<Team> teamOptional = teamService.getTeamsById(id);
+				if (teamOptional.isEmpty()) {
+					return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No team with this id");
+				} else {
+		        ObjectMapper objectMapper = new ObjectMapper();
+		        JsonNode teamNode = objectMapper.convertValue(teamOptional.get(), JsonNode.class);
 
+		        JsonNode patchedTeamNode = patch.apply(teamNode);
+		        Team updatedTeam = objectMapper.treeToValue(patchedTeamNode, Team.class);
+
+		        teamService.saveTeam(updatedTeam);
+		        return ResponseEntity.ok(updatedTeam);
+		    }
+		}
 }
+

@@ -1,4 +1,4 @@
-package com.example.demo.api.playerstat;
+package com.example.demo.api.playerStatistic;
 
 import java.util.List;
 import java.util.Optional;
